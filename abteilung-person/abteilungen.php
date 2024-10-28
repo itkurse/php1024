@@ -26,6 +26,7 @@ $abteilungen = $dba->getAbteilungen();
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Bearbeiten</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +38,9 @@ $abteilungen = $dba->getAbteilungen();
                 echo '<td>' . htmlspecialchars($a->id) . '</td>';
                 echo '<td>' . htmlspecialchars($a->name) . '</td>';
                 echo '<td>' . htmlspecialchars($a->email) . '</td>';
+
+                // Link zur Bearbeiten-Seite
+                echo '<td><a href="bearbeite_abteilung.php?id='.$a->id.'">bearbeiten</a></td>';
 
                 echo '</tr>';
             }

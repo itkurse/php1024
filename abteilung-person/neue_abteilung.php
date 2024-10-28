@@ -20,7 +20,7 @@ if(isset($_POST['bt_neue_abteilung'])){
 
     // Speichern
     if(count($errors) == 0){
-        $dba->createAbteilung($email, $email);
+        $dba->createAbteilung($name, $email);
         header('Location: abteilungen.php');
         exit();
     }
