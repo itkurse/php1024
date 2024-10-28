@@ -22,3 +22,6 @@ CREATE TABLE person
     PRIMARY KEY(id),
     FOREIGN KEY (abteilung_id) REFERENCES abteilung(id)
 );
+
+ALTER TABLE person 
+ADD COLUMN date_removed TIMESTAMP NULL DEFAULT NULL;
