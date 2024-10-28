@@ -103,6 +103,16 @@ class DbAccess
         $ps->execute();
     }
 
+
+    // Löscht die Abteilung mit der angegebenen ID
+    public function deleteAbteilung(int $id){
+        $sql = 'DELETE FROM abteilung 
+        WHERE id = :id';
+        $ps = $this->conn->prepare($sql);
+        $ps->bindValue('id', $id);
+        $ps->execute();
+    }
+
 }
 
 ?>

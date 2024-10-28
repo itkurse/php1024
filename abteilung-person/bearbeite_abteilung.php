@@ -46,6 +46,14 @@ if(isset($_POST['bt_bearbeite_abteilung'])){
     }
 }
 
+
+if(isset($_POST['bt_loesche_abteilung'])){
+    $dba->deleteAbteilung($abteilung->id);
+    header('Location: abteilungen.php');
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +75,10 @@ if(isset($_POST['bt_bearbeite_abteilung'])){
             <label>Email:</label><br>
             <input type="text" name="email" value="<?php echo htmlspecialchars($abteilung->email); ?>"><br>
             <button name="bt_bearbeite_abteilung">Abteilung bearbeiten</button>
+        </form>
+
+        <form action="bearbeite_abteilung.php?id=<?php echo $abteilung->id; ?>" method="POST">
+            <button name="bt_loesche_abteilung">Abteilung löschen</button>
         </form>
 
     </main>
