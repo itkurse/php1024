@@ -4,6 +4,30 @@ $dba = new DbAccess();
 
 $errors = []; // leeres Array, darin werden Fehlermeldungen gespeichert
 
+// wurde das Formular abgesendet?
+if(isset($_POST['bt_neue_abteilung'])){
+    // Formulardaten in Variablen einlesen
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+
+    // Formularvalidierung
+    if(empty($name) || strlen($name) > 50){
+        $errors[] = 'Name muss 1-50 Zeichen enthalten';
+    }
+    if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE){
+        $errors[] = 'E-Mail ist ungültig';
+    }
+
+    // Speichern
+    if(count($errors) == 0){
+        $dba->createAbteilung($email, $email);
+        header('Location: abteilungen.php');
+        exit();
+    }
+
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,16 +41,7 @@ $errors = []; // leeres Array, darin werden Fehlermeldungen gespeichert
     <main>
         <?php include 'nav.inc.php'; ?>
         <h1>Neue Abteilung</h1>
-        <?php
-        // Ausgabe der Fehlermeldungen
-        if(isset($errors) && count($errors) > 0){
-            echo '<ul>';
-            foreach($errors as $e){
-                echo '<li>' . htmlspecialchars($e) . '</li>';
-            }
-            echo '</ul>';
-        }
-        ?>
+        <?php include 'errors.inc.php'; ?>
 
         <!-- action: URL, wohin sollen die Daten gesendet werden? -->
         <!-- method: GET oder POST -->
