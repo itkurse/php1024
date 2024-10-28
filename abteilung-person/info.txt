@@ -9,3 +9,10 @@ https://github.com/itkurse/php1024
 - In DbAccess eine Methode schreiben welche einen Datensatz speichert (z. B. createAbteilung)
 - im Frontend (neue_abteilung.php) das Formular zur Eingabe der Daten schreiben, Formularvalidierung,
     wenn es bei der Formularvalidierung keine Fehler gibt wird die Methode in der DbAccess aufgerufen
+Darstellung aller Abteilungen
+- Erstelle Model-Klassen, für jede Tabelle wird eine entsprechende Klasse geschrieben
+  für jede Spalte der Tabelle wird eine Eigenschaft in der Klasse geschrieben 
+  Model-Klassen sind eine 1:1 Abbilung der Tabellen im PHP-Script 
+- inkludiere die Model-Klassen in der DbAccess 
+- Schreibe in DbAccess eine neue Methode (getAbteilungen()) welche Abteilungen aus der Tabelle lädt
+  und als Array von Objekten der Klasse Abteilung zurückgibt. 

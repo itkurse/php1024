@@ -1,5 +1,8 @@
 <?php
 
+// binde die Model-Klassen ein, damit wir in der DbAccess Objekte dieser Klassen erzeugen können
+require_once 'models.inc.php';
+
 class DbAccess 
 {
     // PDO-Connection ist die Verbindung zur Datenbank
@@ -40,6 +43,28 @@ class DbAccess
 
         $id = $this->conn->lastInsertId();
         return $id;
+    }
+
+
+    // Sucht alle Abteilungen in der Tabelle und 
+    // gibt diese als Array von Objekten der Klasse Abteilung zurück
+    public function getAbteilungen() : array {
+        $sql = 'SELECT * 
+        FROM abteilung';
+        $ps = $this->conn->prepare($sql);
+        $ps->execute();
+
+        $abteilungen = []; // sammle alle Abteilungen in diesem Array
+
+        // iteriere über jeden gefundenen Datensatz, $row ist immer eine Zeile der Tabelle
+        while($row = $ps->fetch()){
+            // Erzeuge aus dem Datensatz ein neues Objekt der Klasse Abteilung
+            $a = new Abteilung($row['id'], $row['name'], $row['email']);
+
+            // füge das Objekt im Array ein
+            $abteilungen[] = $a;
+        }
+        return $abteilungen;
     }
 
 }
