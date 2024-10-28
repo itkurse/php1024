@@ -1,0 +1,28 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+main {
+    /* stelle Inhalte des main-Tags zentriert da */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+nav {
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: black;
+    padding: 4px 8px;
+}

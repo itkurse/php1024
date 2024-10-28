@@ -1,3 +1,11 @@
+https://github.com/itkurse/php1024
+
 - Datenmodellierung (Attributschreibweise, Entity Relationship Diagram)
 - DDL-Script (Datenbank, Tabellen erstellen)
 - Klasse DbAccess anlegen, darin im Konstruktor die DB-Connection aufbauen
+- Startseite (index.php) erstellt, dbaccess-File inkludieren, Objekt der Klasse DbAccess erzeugen
+    und damit die Datenbankverbindung testen. 
+- Seite anlegen zum Einfügen (z. B. neue_abteilung.php), darin wieder DbAccess inkludieren 
+- In DbAccess eine Methode schreiben welche einen Datensatz speichert (z. B. createAbteilung)
+- im Frontend (neue_abteilung.php) das Formular zur Eingabe der Daten schreiben, Formularvalidierung,
+    wenn es bei der Formularvalidierung keine Fehler gibt wird die Methode in der DbAccess aufgerufen
