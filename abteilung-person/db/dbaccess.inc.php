@@ -113,6 +113,39 @@ class DbAccess
         $ps->execute();
     }
 
+
+    // Speichert eine neue Person in der Datenbank. Übergeben werden die Informationen welche
+    // der User in der Datei neue_person.php eingegeben hat.
+    // Zurückgegeben wird die ID der erstellten Person
+    public function createPerson(string $vorname, string $nachname, DateTime $geburtsdatum,
+                            float $gehalt, int $abteilungId) : int{
+        $sql = 'INSERT INTO person 
+        (vorname, nachname, geburtsdatum, gehalt, abteilung_id) 
+        VALUES 
+        (:vorname, :nachname, :geburtsdatum, :gehalt, :abteilung_id) ';
+        $ps = $this->conn->prepare($sql); // erstelle prepared statement
+        $ps->bindValue('vorname', $vorname);
+        $ps->bindValue('nachname', $nachname);
+
+        // Die DB benötigt das Datum als String im Format Y-m-d
+        // DateTime --> String umwandeln mit der format-Methode
+        $ps->bindValue('geburtsdatum', $geburtsdatum->format('Y-m-d'));
+
+        $ps->bindValue('gehalt', $gehalt);
+        $ps->bindValue('abteilung_id', $abteilungId);
+
+        $ps->execute(); // schicke SQL zur Datenbank
+
+        return $this->conn->lastInsertId();
+    }
+
+
+    // Sucht alle Personen in der Datenbank
+    // Gibt ein Array von Objekten der Klasse Person zurück
+    // public function getPersonen() : array {
+
+    // }
+
 }
 
 ?>

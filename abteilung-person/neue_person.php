@@ -33,8 +33,12 @@ if(isset($_POST['bt_neue_person'])){
         $errors[] = 'Abteilung auswählen';
     }
 
+    // wenn es keine Fehler gab, über DbAccess in der Datenbank speichern
     if(count($errors) == 0){
-        
+        $dba->createPerson($vorname, $nachname, $geburtsdatum, 
+                $gehalt, $abteilungId);
+        header('Location: personen.php');
+        exit();
     }
 
 }
