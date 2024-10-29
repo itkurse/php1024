@@ -142,9 +142,30 @@ class DbAccess
 
     // Sucht alle Personen in der Datenbank
     // Gibt ein Array von Objekten der Klasse Person zurück
-    // public function getPersonen() : array {
+    public function getPersonen() : array {
+        $sql = 'SELECT * 
+        FROM person ';
+        $ps = $this->conn->prepare($sql);
+        $ps->execute();
 
-    // }
+        $personen = [];
+        while($row = $ps->fetch()){
+            // Klasse Person benötigt DateTime als Datentyp für das Geburtsdatum
+            // Die Datenbank liefert das Geburtsdatum als String im Format Y
+            
+            // String --> DateTime umwandeln
+            $geburtsdatum = DateTime::createFromFormat('Y-m-d', $row['geburtsdatum']);
+
+            // neues Objekt der Klasse Person erzeugen
+            $p = new Person($row['id'], $row['vorname'], $row['nachname'],
+                $geburtsdatum, $row['gehalt'], 
+                $row['abteilung_id'], null);
+
+            // Objekt im Array einfügen
+            $personen[] = $p;
+        }
+        return $personen;
+    }
 
 }
 
